@@ -1,8 +1,8 @@
-import numpy as np
+import numpy as np  # * Importa la librería NumPy para operaciones numéricas
 
 
-class Neuron:
-    def __init__(self, n_inputs):
+class Neuron:  # * Define la clase Neuron que representa una neurona artificial
+    def __init__(self, n_inputs):  # * Inicializa la neurona con un número de entradas
         """
         Inicializa una neurona artificial con un número específico de entradas.
 
@@ -20,29 +20,30 @@ class Neuron:
         """
         # * Genera un array de pesos aleatorios siguiendo una distribución normal (media=0, desv=1)
         # * Los pesos son los parámetros que la neurona ajustará durante el entrenamiento
+        # * Pesos sinápticos inicializados aleatoriamente
         self.weights = np.random.randn(n_inputs)
 
         # * Genera un valor aleatorio para el sesgo (bias) siguiendo una distribución normal
         # * El sesgo permite a la neurona ajustar su umbral de activación
-        self.bias = np.random.randn()
+        self.bias = np.random.randn()  # * Sesgo inicializado aleatoriamente
 
         # * Inicializa la salida de la neurona a 0
         # * Este valor se actualizará cada vez que se realice una propagación hacia adelante
-        self.output = 0
+        self.output = 0  # * Salida de la neurona (inicialmente 0)
 
         # * Variable para almacenar las entradas de la última propagación hacia adelante
         # * Necesario para calcular los gradientes durante la retropropagación
-        self.inputs = None
+        self.inputs = None  # * Últimas entradas procesadas
 
         # * Inicializa el array de gradientes de los pesos a ceros
         # * Tendrá la misma forma que el array de pesos
-        self.dweight = np.zeros_like(self.weights)
+        self.dweight = np.zeros_like(self.weights)  # * Gradientes de los pesos
 
         # * Inicializa el gradiente del sesgo a 0
         # * Se utilizará para actualizar el sesgo durante el entrenamiento
-        self.dbias = 0
+        self.dbias = 0  # * Gradiente del sesgo
 
-    def activate(self, weighted_sum):
+    def activate(self, weighted_sum):  # * Aplica la función de activación sigmoide
         """
         Aplica la función de activación sigmoide a la suma ponderada de las entradas.
 
@@ -55,9 +56,10 @@ class Neuron:
         # * Aplica la función de activación sigmoide: f(x) = 1 / (1 + e^(-x))
         # * Comprime cualquier número real a un valor entre 0 y 1
         # * Esta no-linealidad permite a la red aprender patrones complejos
+        # * Devuelve el resultado de la sigmoide
         return 1 / (1 + np.exp(-weighted_sum))
 
-    def derivate_activate(self, sigmoid_output):
+    def derivate_activate(self, sigmoid_output):  # * Derivada de la función sigmoide
         """
         Calcula la derivada de la función de activación sigmoide.
 
