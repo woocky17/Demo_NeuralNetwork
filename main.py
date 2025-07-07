@@ -87,7 +87,7 @@ def main():
         'aqi_predicho': predicciones_aqi,
         'categoria': categorias_pred
     })
-    df_predicciones.to_csv('predicciones_aqi_10dias.csv', index=False)
+    df_predicciones.to_csv('data/predicciones_aqi_10dias.csv', index=False)
     logger.info('Predicciones guardadas en predicciones_aqi_10dias.csv')
 
     predictions, y_test_original = predict_and_inverse(
